@@ -1,5 +1,5 @@
 import numpy as np
-import pandas as pd
+from pandas import read_csv
 from PIL import Image
 from torch.utils.data import Dataset
 from torchvision.transforms import *
@@ -13,7 +13,7 @@ class DogsVsCatsDataset(Dataset):
         initializes an image transform pipeline to apply.
     """
     def __init__(self, annotations_file):
-        self.imgs_labels = pd.read_csv(annotations_file, header = None)
+        self.imgs_labels = read_csv(annotations_file, header = None)
         self.transforms = Compose([
             ToTensor(),
             Resize((32, 32))
